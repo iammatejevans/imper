@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+
+    {% if actor %}
+
+        <h3>{{ actor.name }}</h3>
+
+        {% if movies %}
+            {% for movie in movies %}
+                <a href="{{ movie.get_movie_url }}">{{ movie.name }}</a><br>
+            {% endfor %}
+        {% else %}
+            <p>No movies</p>
+        {% endif %}
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

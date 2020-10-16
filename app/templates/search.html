@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+
+    <form class="form-inline" style="margin:auto; max-width: max-content;">
+        <div class="form-group mb-2" style="margin-right:1rem;">
+            <label for="query" class="sr-only">Search term</label>
+            <input name='q' type="text" class="form-control" id="query" value="{{ request.GET.q }}" placeholder="...">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" id="addToShoppingListButton">Search</button>
+    </form>
+
+</div>
+
+<div class="container" style="display:grid; grid-template-columns:repeat(2, 1fr); grid-gap:1rem; margin-top:5rem;">
+
+    <div class="container" style="text-align: center;">
+
+        <h3>Movies</h3>
+
+        {% if movies %}
+            {% for movie in movies %}
+                <a href="{{ movie.get_movie_url }}">{{ movie.name }}</a><br>
+            {% endfor %}
+        {% else %}
+            <p>No movies match your search</p>
+        {% endif %}
+
+    </div>
+
+    <div class="container" style="text-align: center;">
+
+        <h3>Actors</h3>
+
+        {% if actors %}
+            {% for actor in actors %}
+                <a href="{{ actor.get_actor_url }}">{{ actor.name }}</a><br>
+            {% endfor %}
+        {% else %}
+            <p>No actors match your search</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+{% endblock %}
